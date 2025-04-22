@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript: Conditional, Loops, Functions</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 20px;
+      background-color: white; 
+    }
+
+    h1 {
+      text-align: center;
+      color: maroon;
+    }
+
+    .section {
+      background: white;
+      border: 2px solid #ddd; 
+      padding: 15px;
+      margin: 10px auto;
+      width: 80%;
+      border-radius: 5px;
+    }
+
+    h2 {
+      color: maroon; 
+      text-align: center;
+    }
+
+    input {
+      width: 80%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      padding: 8px 12px;
+      background-color: maroon;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    p {
+      font-size: 16px;
+      font-weight: bold;
+      color: maroon;
+    }
+  </style>
+</head>
+<body>
+  <h1>JavaScript: Conditional,Loops,Functions</h1>
+  <div class="section">
+    <h2>1.Filter Negative Numbers</h2>
+    <input id="negInput" placeholder="Enter numbers separated by commas">
+    <button onclick="runFilter()">Filter</button>
+    <p id="negResult"></p>
+  </div>
+
+  <div class="section">
+    <h2>2.Difference From 13</h2>
+    <input id="diffInput" type="number" placeholder="Enter a number">
+    <button onclick="runDiff()">Calculate</button>
+    <p id="diffResult"></p>
+  </div>
+
+  <div class="section">
+    <h2>3.Fibonacci Series</h2>
+    <input id="fibInput" type="number" placeholder="Enter number of terms">
+    <button onclick="runFibonacci()">Generate</button>
+    <p id="fibResult"></p>
+  </div>
+
+  <div class="section">
+    <h2>4.Sum of Multiples of 3 and 5 Under 1000</h2>
+    <center><button onclick="runSum()">Calculate</button></center>
+    <p id="sumResult"></p>
+  </div>
+
+  <div class="section">
+    <h2>5.Cube of a Number</h2>
+    <input id="cubeInput" type="number" placeholder="Enter a number">
+    <button onclick="runCube()">Cube</button>
+    <p id="cubeResult"></p>
+  </div>
+
+  <script>
+    const runFilter = () => {
+      const numbers = document.getElementById("negInput").value.split(',').map(Number);
+      document.getElementById("negResult").innerText = "Filtered: " + numbers.filter(num => num >= 0).join(', ');
+    };
+
+    const runDiff = () => {
+      const num = parseFloat(document.getElementById("diffInput").value);
+      document.getElementById("diffResult").innerText = "Result: " + (num > 13 ? (num - 13) * 2 : Math.abs(num - 13));
+    };
+
+    const runFibonacci = () => {
+      const n = parseInt(document.getElementById("fibInput").value);
+      const fib = [0, 1];
+      for (let i = 2; i < n; i++) fib.push(fib[i - 1] + fib[i - 2]);
+      document.getElementById("fibResult").innerText = "Fibonacci: " + fib.slice(0, n).join(', ');
+    };
+
+    const runSum = () => {
+      document.getElementById("sumResult").innerText = "Sum: " +
+        Array.from({length: 1000}, (_, i) => i).filter(i => i % 3 === 0 || i % 5 === 0).reduce((a, b) => a + b, 0);
+    };
+
+    const runCube = () => {
+      const n = parseFloat(document.getElementById("cubeInput").value);
+      document.getElementById("cubeResult").innerText = "Cube: " + (n ** 3);
+    };
+  </script>
+
+</body>
+</html>
