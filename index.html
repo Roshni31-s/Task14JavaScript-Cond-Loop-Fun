@@ -4,119 +4,230 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JavaScript: Conditional, Loops, Functions</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
+  
     body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-      padding: 20px;
-      background-color: white; 
+      font-family: 'IBM Plex Sans', sans-serif; /* A modern, clean sans-serif font */
+      margin: 0;
+      padding: 30px; /* Increased padding */
+      background-color: #f8f9fa; /* Very light grey background */
+      color: #333; /* Dark grey for general text */
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Center content horizontally */
+      min-height: 100vh; /* Ensure body takes full viewport height */
+      box-sizing: border-box; /* Include padding in element's total width and height */
     }
 
+    /* Main Heading */
     h1 {
       text-align: center;
-      color: maroon;
+      color: #8B0000; /* Darker maroon for a refined look */
+      font-size: 2.8em; /* Slightly larger heading */
+      font-weight: 700;
+      margin-bottom: 40px; /* More space below heading */
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.05); /* Very subtle text shadow */
     }
 
+    /* Section Containers */
     .section {
-      background: white;
-      border: 2px solid #ddd; 
-      padding: 15px;
-      margin: 10px auto;
-      width: 80%;
-      border-radius: 5px;
+      background: #ffffff; /* Pure white background for sections */
+      border: 1px solid #e0e0e0; /* Very subtle light grey border */
+      padding: 25px 30px; /* Increased padding */
+      margin: 15px 0; /* Vertical margin between sections */
+      width: 100%;
+      max-width: 600px; /* Max width for readability */
+      border-radius: 8px; /* Slightly more rounded corners */
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Soft, subtle shadow */
+      box-sizing: border-box;
     }
 
+    /* Section Headings */
     h2 {
-      color: maroon; 
-      text-align: center;
+      color: #A52A2A; /* Lighter maroon for subheadings */
+      text-align: left; /* Align subheadings to the left */
+      font-size: 1.6em; /* Slightly smaller subheading */
+      font-weight: 600;
+      margin-top: 0; /* Remove default top margin */
+      margin-bottom: 20px; /* Space below subheading */
+      border-bottom: 1px solid #f0f0f0; /* Thin separator line */
+      padding-bottom: 10px;
     }
 
+    /* Input Fields */
     input {
-      width: 80%;
-      padding: 8px;
-      margin-top: 5px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
+      width: calc(100% - 20px); /* Adjust for padding */
+      padding: 10px;
+      margin-top: 8px;
+      margin-bottom: 15px; /* Space below inputs */
+      border: 1px solid #ccd0d5; /* Light grey border */
+      border-radius: 6px; /* Rounded input corners */
+      font-size: 1em;
+      box-sizing: border-box;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease; /* Smooth transition on focus */
     }
 
+    input:focus {
+      border-color: #8B0000; /* Maroon border on focus */
+      box-shadow: 0 0 0 3px rgba(139, 0, 0, 0.1); /* Subtle maroon glow */
+      outline: none; /* Remove default outline */
+    }
+
+    /* Buttons */
     button {
-      padding: 8px 12px;
-      background-color: maroon;
+      padding: 10px 18px; /* More generous padding */
+      background-color: #8B0000; /* Maroon button background */
       color: white;
       border: none;
-      border-radius: 5px;
+      border-radius: 6px;
       cursor: pointer;
       margin-top: 10px;
+      font-size: 1.05em;
+      font-weight: 600;
+      transition: background-color 0.2s ease, transform 0.1s ease; /* Smooth transition on hover/active */
     }
 
+    button:hover {
+      background-color: #A52A2A; /* Lighter maroon on hover */
+      transform: translateY(-1px); /* Subtle lift effect */
+    }
+
+    button:active {
+      transform: translateY(0); /* Press effect */
+    }
+
+    /* Result Paragraphs */
     p {
-      font-size: 16px;
-      font-weight: bold;
-      color: maroon;
+      font-size: 1.1em; /* Slightly larger result text */
+      font-weight: 600; /* Bolder result text */
+      color: #8B0000; /* Maroon for results */
+      margin-top: 20px;
+      min-height: 20px; /* Prevent layout shift when results appear */
+      border-top: 1px dashed #f0f0f0; /* Dashed line above results */
+      padding-top: 15px;
+    }
+
+    /* Specific centering for the sum button (only one button in its section) */
+    .section:nth-child(5) button { /* Targets the button in the 4th .section (Sum of Multiples) */
+        display: block; /* Make button a block element */
+        margin-left: auto; /* Center block element */
+        margin-right: auto;
     }
   </style>
 </head>
 <body>
-  <h1>JavaScript: Conditional,Loops,Functions</h1>
+  <h1>JavaScript: Conditional, Loops, Functions</h1>
+
   <div class="section">
-    <h2>1.Filter Negative Numbers</h2>
-    <input id="negInput" placeholder="Enter numbers separated by commas">
+    <h2>1. Filter Negative Numbers</h2>
+    <input id="negInput" placeholder="Enter numbers separated by commas (e.g., -5,2,-8,1)">
     <button onclick="runFilter()">Filter</button>
     <p id="negResult"></p>
   </div>
 
   <div class="section">
-    <h2>2.Difference From 13</h2>
-    <input id="diffInput" type="number" placeholder="Enter a number">
+    <h2>2. Difference From 13</h2>
+    <input id="diffInput" type="number" placeholder="Enter a number (e.g., 20 or 5)">
     <button onclick="runDiff()">Calculate</button>
     <p id="diffResult"></p>
   </div>
 
   <div class="section">
-    <h2>3.Fibonacci Series</h2>
-    <input id="fibInput" type="number" placeholder="Enter number of terms">
+    <h2>3. Fibonacci Series</h2>
+    <input id="fibInput" type="number" placeholder="Enter number of terms (e.g., 8)">
     <button onclick="runFibonacci()">Generate</button>
     <p id="fibResult"></p>
   </div>
 
   <div class="section">
-    <h2>4.Sum of Multiples of 3 and 5 Under 1000</h2>
-    <center><button onclick="runSum()">Calculate</button></center>
+    <h2>4. Sum of Multiples of 3 and 5 Under 1000</h2>
+    <button onclick="runSum()">Calculate</button>
     <p id="sumResult"></p>
   </div>
 
   <div class="section">
-    <h2>5.Cube of a Number</h2>
-    <input id="cubeInput" type="number" placeholder="Enter a number">
+    <h2>5. Cube of a Number</h2>
+    <input id="cubeInput" type="number" placeholder="Enter a number (e.g., 4)">
     <button onclick="runCube()">Cube</button>
     <p id="cubeResult"></p>
   </div>
 
   <script>
     const runFilter = () => {
-      const numbers = document.getElementById("negInput").value.split(',').map(Number);
-      document.getElementById("negResult").innerText = "Filtered: " + numbers.filter(num => num >= 0).join(', ');
+      const inputValue = document.getElementById("negInput").value;
+      // Handle empty input more gracefully
+      if (!inputValue.trim()) {
+        document.getElementById("negResult").innerText = "Please enter numbers.";
+        return;
+      }
+      const numbers = inputValue.split(',').map(num => parseFloat(num.trim())).filter(num => !isNaN(num));
+      const filteredNumbers = numbers.filter(num => num >= 0);
+      document.getElementById("negResult").innerText = "Filtered (Non-negative): " + (filteredNumbers.length > 0 ? filteredNumbers.join(', ') : "None found.");
     };
 
     const runDiff = () => {
-      const num = parseFloat(document.getElementById("diffInput").value);
+      const numInput = document.getElementById("diffInput").value;
+      if (numInput === "") { // Check for empty string specifically
+        document.getElementById("diffResult").innerText = "Please enter a number.";
+        return;
+      }
+      const num = parseFloat(numInput);
+      if (isNaN(num)) {
+        document.getElementById("diffResult").innerText = "Invalid input. Please enter a valid number.";
+        return;
+      }
       document.getElementById("diffResult").innerText = "Result: " + (num > 13 ? (num - 13) * 2 : Math.abs(num - 13));
     };
 
     const runFibonacci = () => {
-      const n = parseInt(document.getElementById("fibInput").value);
+      const nInput = document.getElementById("fibInput").value;
+      if (nInput === "") {
+        document.getElementById("fibResult").innerText = "Please enter number of terms.";
+        return;
+      }
+      const n = parseInt(nInput);
+      if (isNaN(n) || n < 0) {
+        document.getElementById("fibResult").innerText = "Please enter a non-negative integer.";
+        return;
+      }
+      if (n === 0) {
+          document.getElementById("fibResult").innerText = "Fibonacci: ";
+          return;
+      }
+      if (n === 1) {
+          document.getElementById("fibResult").innerText = "Fibonacci: 0";
+          return;
+      }
+
       const fib = [0, 1];
-      for (let i = 2; i < n; i++) fib.push(fib[i - 1] + fib[i - 2]);
+      for (let i = 2; i < n; i++) {
+        fib.push(fib[i - 1] + fib[i - 2]);
+      }
       document.getElementById("fibResult").innerText = "Fibonacci: " + fib.slice(0, n).join(', ');
     };
 
     const runSum = () => {
-      document.getElementById("sumResult").innerText = "Sum: " +
-        Array.from({length: 1000}, (_, i) => i).filter(i => i % 3 === 0 || i % 5 === 0).reduce((a, b) => a + b, 0);
+      let sum = 0;
+      for (let i = 0; i < 1000; i++) {
+        if (i % 3 === 0 || i % 5 === 0) {
+          sum += i;
+        }
+      }
+      document.getElementById("sumResult").innerText = "Sum: " + sum;
     };
 
     const runCube = () => {
-      const n = parseFloat(document.getElementById("cubeInput").value);
+      const nInput = document.getElementById("cubeInput").value;
+      if (nInput === "") {
+        document.getElementById("cubeResult").innerText = "Please enter a number.";
+        return;
+      }
+      const n = parseFloat(nInput);
+      if (isNaN(n)) {
+        document.getElementById("cubeResult").innerText = "Invalid input. Please enter a valid number.";
+        return;
+      }
       document.getElementById("cubeResult").innerText = "Cube: " + (n ** 3);
     };
   </script>
